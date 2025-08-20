@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tatsuki One - Meme Maker</title>
+    <meta name="description" content="Create your own memes with the Tatsuki One Meme Maker. Upload your own images or use our art, add text, and download your creation.">
+    <meta name="keywords" content="Tatsuki One, meme maker, NFT meme, anime meme, custom meme, image editor">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- JS Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/framer-motion/4.1.17/framer-motion.cjs.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/4.5.0/fabric.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'orbitron': ['Orbitron', 'sans-serif'],
+                        'poppins': ['Poppins', 'sans-serif'],
+                    },
+                    colors: {
+                        'neon-yellow': '#FFFF00',
+                        'neon-green': '#39FF14',
+                        'deep-purple': '#2D1B4E',
+                        'accent-red': '#FF0000',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #000000;
+            color: #FFFFFF;
+            font-family: 'Poppins', sans-serif;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Orbitron', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-black text-white">
+    <header class="bg-deep-purple/30 backdrop-blur-lg sticky top-0 z-50 border-b border-neon-green/20">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div>
+                <a href="index.html" class="text-2xl font-orbitron font-bold text-neon-yellow hover:text-neon-green transition-all duration-300">TATSUKI</a>
+            </div>
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="index.html" class="font-poppins text-white hover:text-neon-green transition-colors">Home</a>
+                <a href="arts.html" class="font-poppins text-white hover:text-neon-green transition-colors">Arts</a>
+                <a href="about.html" class="font-poppins text-white hover:text-neon-green transition-colors">About</a>
+                <a href="contact.html" class="font-poppins text-white hover:text-neon-green transition-colors">Contact</a>
+                <a href="meme-maker.html" class="font-poppins text-white hover:text-neon-green transition-colors">Meme Maker</a>
+            </div>
+            <div class="md:hidden">
+                <button id="mobile-menu-button" class="text-white focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                </button>
+            </div>
+        </nav>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden">
+            <a href="index.html" class="block py-2 px-6 text-sm hover:bg-deep-purple">Home</a>
+            <a href="arts.html" class="block py-2 px-6 text-sm hover:bg-deep-purple">Arts</a>
+            <a href="about.html" class="block py-2 px-6 text-sm hover:bg-deep-purple">About</a>
+            <a href="contact.html" class="block py-2 px-6 text-sm hover:bg-deep-purple">Contact</a>
+            <a href="meme-maker.html" class="block py-2 px-6 text-sm hover:bg-deep-purple">Meme Maker</a>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-6 py-16">
+        <h1 class="text-5xl font-orbitron font-bold text-center mb-12 text-neon-yellow drop-shadow-[0_0_15px_rgba(255,255,0,0.8)]">
+            Tatsuki Meme Maker
+        </h1>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Controls -->
+            <div class="md:col-span-1 bg-deep-purple/30 p-6 rounded-lg border border-neon-green/20 h-fit">
+                <h2 class="text-2xl font-orbitron mb-4 border-b border-neon-green/30 pb-2">Controls</h2>
+
+                <div class="space-y-6">
+                    <!-- Image Upload -->
+                    <div>
+                        <label for="image-upload" class="block mb-2 font-poppins text-sm font-bold">1. Upload Image</label>
+                        <input type="file" id="image-upload" accept="image/*" class="w-full text-sm text-white file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-neon-green file:text-black hover:file:bg-neon-yellow cursor-pointer" aria-label="Upload an image for the meme background">
+                    </div>
+
+                    <!-- Add Text -->
+                    <div>
+                        <label for="text-input" class="block mb-2 font-poppins text-sm font-bold">2. Add Text</label>
+                        <textarea id="text-input" placeholder="Enter your text..." rows="3" class="w-full bg-black/50 border border-neon-green/50 rounded-lg p-2 focus:ring-neon-yellow focus:border-neon-yellow" aria-label="Text to add to the meme"></textarea>
+                        <button id="add-text-btn" class="mt-2 w-full bg-gradient-to-r from-neon-yellow to-neon-green text-black font-bold py-2 px-4 rounded-full font-orbitron hover:scale-105 transition-transform" aria-label="Add the text to the canvas">
+                            Add Text
+                        </button>
+                    </div>
+
+                    <!-- Download -->
+                    <div>
+                        <label id="download-label" class="block mb-2 font-poppins text-sm font-bold">3. Download</label>
+                        <button id="download-btn" class="w-full bg-accent-red text-white font-bold py-2 px-4 rounded-full font-orbitron hover:scale-105 transition-transform" aria-labelledby="download-label">
+                            Download Meme
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Canvas -->
+            <div class="md:col-span-2">
+                <div class="bg-black border-2 border-dashed border-gray-600 rounded-lg p-2">
+                    <canvas id="meme-canvas"></canvas>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-deep-purple/30 border-t border-neon-green/20 mt-20">
+        <div class="container mx-auto px-6 py-4 flex flex-col md:flex-row justify-between items-center text-sm text-center">
+            <p class="font-poppins mb-2 md:mb-0">&copy; 2025 Tatsuki One. All rights reserved.</p>
+            <div class="flex space-x-6">
+                <a href="#" class="hover:text-neon-yellow transition-colors">Twitter</a>
+                <a href="#" class="hover:text-neon-yellow transition-colors">Discord</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/meme-maker.js"></script>
+</body>
+</html>

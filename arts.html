@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tatsuki One - Arts</title>
+    <meta name="description" content="Explore the full collection of Tatsuki One NFT artwork. A gallery of unique, cyberpunk and anime-inspired digital creations.">
+    <meta name="keywords" content="Tatsuki One, NFT gallery, art collection, anime NFT, cyberpunk art, digital collectibles">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- JS Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/framer-motion/4.1.17/framer-motion.cjs.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/4.5.0/fabric.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'orbitron': ['Orbitron', 'sans-serif'],
+                        'poppins': ['Poppins', 'sans-serif'],
+                    },
+                    colors: {
+                        'neon-yellow': '#FFFF00',
+                        'neon-green': '#39FF14',
+                        'deep-purple': '#2D1B4E',
+                        'accent-red': '#FF0000',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #000000;
+            color: #FFFFFF;
+            font-family: 'Poppins', sans-serif;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Orbitron', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-black text-white">
+    <header class="bg-deep-purple/30 backdrop-blur-lg sticky top-0 z-50 border-b border-neon-green/20">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div>
+                <a href="index.html" class="text-2xl font-orbitron font-bold text-neon-yellow hover:text-neon-green transition-all duration-300">TATSUKI</a>
+            </div>
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="index.html" class="font-poppins text-white hover:text-neon-green transition-colors">Home</a>
+                <a href="arts.html" class="font-poppins text-white hover:text-neon-green transition-colors">Arts</a>
+                <a href="about.html" class="font-poppins text-white hover:text-neon-green transition-colors">About</a>
+                <a href="contact.html" class="font-poppins text-white hover:text-neon-green transition-colors">Contact</a>
+                <a href="meme-maker.html" class="font-poppins text-white hover:text-neon-green transition-colors">Meme Maker</a>
+            </div>
+            <div class="md:hidden">
+                <button id="mobile-menu-button" class="text-white focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                </button>
+            </div>
+        </nav>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden">
+            <a href="index.html" class="block py-2 px-6 text-sm hover:bg-deep-purple">Home</a>
+            <a href="arts.html" class="block py-2 px-6 text-sm hover:bg-deep-purple">Arts</a>
+            <a href="about.html" class="block py-2 px-6 text-sm hover:bg-deep-purple">About</a>
+            <a href="contact.html" class="block py-2 px-6 text-sm hover:bg-deep-purple">Contact</a>
+            <a href="meme-maker.html" class="block py-2 px-6 text-sm hover:bg-deep-purple">Meme Maker</a>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-6 py-16">
+        <h1 class="text-5xl font-orbitron font-bold text-center mb-12 text-neon-yellow drop-shadow-[0_0_15px_rgba(255,255,0,0.8)]">
+            The Collection
+        </h1>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+            <!-- Image 1 -->
+            <div class="group relative overflow-hidden rounded-lg border border-neon-green/30">
+                <img src="https://placehold.co/600x600/000000/39FF14?text=Tatsuki+Art+1" alt="Tatsuki artwork: Cyber Dragon" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
+                <div class="absolute inset-0 bg-black/70 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                    <h3 class="text-2xl font-orbitron text-neon-green text-center p-4">Cyber Dragon</h3>
+                </div>
+            </div>
+            <!-- Image 2 -->
+            <div class="group relative overflow-hidden rounded-lg border border-neon-yellow/30">
+                <img src="https://placehold.co/600x600/000000/FFFF00?text=Tatsuki+Art+2" alt="Tatsuki artwork: Neon Samurai" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
+                <div class="absolute inset-0 bg-black/70 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                    <h3 class="text-2xl font-orbitron text-neon-yellow text-center p-4">Neon Samurai</h3>
+                </div>
+            </div>
+            <!-- Image 3 -->
+            <div class="group relative overflow-hidden rounded-lg border border-accent-red/30">
+                <img src="https://placehold.co/600x600/000000/FF0000?text=Tatsuki+Art+3" alt="Tatsuki artwork: Mecha Beast" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
+                <div class="absolute inset-0 bg-black/70 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                    <h3 class="text-2xl font-orbitron text-accent-red text-center p-4">Mecha Beast</h3>
+                </div>
+            </div>
+            <!-- Image 4 -->
+            <div class="group relative overflow-hidden rounded-lg border border-neon-green/30">
+                <img src="https://placehold.co/600x600/000000/39FF14?text=Tatsuki+Art+4" alt="Tatsuki artwork: Future Runner" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
+                <div class="absolute inset-0 bg-black/70 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                    <h3 class="text-2xl font-orbitron text-neon-green text-center p-4">Future Runner</h3>
+                </div>
+            </div>
+            <!-- Image 5 -->
+            <div class="group relative overflow-hidden rounded-lg border border-neon-yellow/30">
+                <img src="https://placehold.co/600x600/000000/FFFF00?text=Tatsuki+Art+5" alt="Tatsuki artwork: Glitch Demon" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
+                <div class="absolute inset-0 bg-black/70 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                    <h3 class="text-2xl font-orbitron text-neon-yellow text-center p-4">Glitch Demon</h3>
+                </div>
+            </div>
+            <!-- Image 6 -->
+            <div class="group relative overflow-hidden rounded-lg border border-accent-red/30">
+                <img src="https://placehold.co/600x600/000000/FF0000?text=Tatsuki+Art+6" alt="Tatsuki artwork: Crimson Ronin" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
+                <div class="absolute inset-0 bg-black/70 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                    <h3 class="text-2xl font-orbitron text-accent-red text-center p-4">Crimson Ronin</h3>
+                </div>
+            </div>
+            <!-- Image 7 -->
+            <div class="group relative overflow-hidden rounded-lg border border-neon-green/30">
+                <img src="https://placehold.co/600x600/000000/39FF14?text=Tatsuki+Art+7" alt="Tatsuki artwork: Jade Serpent" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
+                <div class="absolute inset-0 bg-black/70 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                    <h3 class="text-2xl font-orbitron text-neon-green text-center p-4">Jade Serpent</h3>
+                </div>
+            </div>
+            <!-- Image 8 -->
+            <div class="group relative overflow-hidden rounded-lg border border-neon-yellow/30">
+                <img src="https://placehold.co/600x600/000000/FFFF00?text=Tatsuki+Art+8" alt="Tatsuki artwork: Golden Guardian" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
+                <div class="absolute inset-0 bg-black/70 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                    <h3 class="text-2xl font-orbitron text-neon-yellow text-center p-4">Golden Guardian</h3>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-deep-purple/30 border-t border-neon-green/20 mt-20">
+        <div class="container mx-auto px-6 py-4 flex flex-col md:flex-row justify-between items-center text-sm text-center">
+            <p class="font-poppins mb-2 md:mb-0">&copy; 2025 Tatsuki One. All rights reserved.</p>
+            <div class="flex space-x-6">
+                <a href="#" class="hover:text-neon-yellow transition-colors">Twitter</a>
+                <a href="#" class="hover:text-neon-yellow transition-colors">Discord</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
